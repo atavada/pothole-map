@@ -1,47 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel Project</title>
+
+    <!-- Stylesheet -->
+    @vite('resources/css/app.css')
+
     <title>Waypoints</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <style>
-        .container {
-            display: flex;
-            flex-direction: row;
-        }
-        #map {
-            display: flex;
-            flex: 3;
-            flex-direction: row;
-            height: 720px;
-        }
-        .inputs {
-            flex: 1;
-            padding: 10px;
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="inputs">
-            <form>
-                <input type="text" id="latitude" placeholder="Latitude">
-                <input type="text" id="longitude" placeholder="Longitude">
-                <button id="addWaypoint">Add Waypoint</button>
-            </form>
-            <form>
-        <label for="mainWaypoint">Main Waypoint:</label>
-        <select id="mainWaypoint">
-            <option value="">Select Main Waypoint</option>
-        </select>
-        <label for="directionWaypoint">Direction Waypoint:</label>
-        <select id="directionWaypoint">
-            <option value="">Select Direction Waypoint</option>
-        </select>
-        <button id="connectWaypoints">Connect Waypoints</button>
-    </form>
-            <ul id="waypointList"></ul>
+    <div class="grid grid-cols-2 gap-2">
+        <div class="p-12">
+            <div class="mb-10 space-y-3">
+                <h1 class="text-xl font-semibold">Input Coordinate</h1>
+                <input type="text" id="latitude" placeholder="Latitude" class="block w-full rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+                <input type="text" id="longitude" placeholder="Longitude" class="block w-full rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+                <button id="addWaypoint" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Add Waypoint</button>
+            </div>
+            <div class="mb-10">
+                <ul id="waypointList" class="font-semibold"></ul>
+            </div>
+            <div class="space-y-3">
+                <h1 for="mainWaypoint" class="text-xl font-semibold">Main Waypoint</h1>
+                <select id="mainWaypoint" class="block w-full rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+                    <option value="" class="">Select Main Waypoint</option>
+                </select>
+                <h1 for="directionWaypoint" class="text-xl font-semibold">Direction Waypoint</h1>
+                <select id="directionWaypoint" class="block w-full rounded-md border-0 py-1.5 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6">
+                    <option value="">Select Direction Waypoint</option>
+                </select>
+                <button id="connectWaypoints" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Connect Waypoints</button>
+            </div>
         </div>
-        <div id="map"></div>
+
+        <div id="map" class="h-screen"></div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
