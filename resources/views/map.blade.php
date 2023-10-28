@@ -1,18 +1,37 @@
-<!-- resources/views/waypoints.blade.php -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Waypoints</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        .container {
+            display: flex;
+            flex-direction: row;
+        }
+        #map {
+            display: flex;
+            flex: 3;
+            flex-direction: row;
+            height: 720px;
+        }
+        .inputs {
+            flex: 1;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    <div id="map" style="height: 400px;"></div>
-    <form>
-        <input type="text" id="latitude" placeholder="Latitude">
-        <input type="text" id="longitude" placeholder="Longitude">
-        <button id="addWaypoint">Add Waypoint</button>
-    </form>
-    <ul id="waypointList"></ul>
+    <div class="container">
+        <div class="inputs">
+            <form>
+                <input type="text" id="latitude" placeholder="Latitude">
+                <input type="text" id="longitude" placeholder="Longitude">
+                <button id="addWaypoint">Add Waypoint</button>
+            </form>
+            <ul id="waypointList"></ul>
+        </div>
+        <div id="map"></div>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
@@ -24,10 +43,10 @@
 
         document.getElementById('addWaypoint').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent the form from submitting
-      
+
             var latitude = parseFloat(document.getElementById('latitude').value);
             var longitude = parseFloat(document.getElementById('longitude').value);
-       
+
             if (!isNaN(latitude) && !isNaN(longitude)) {
                 var waypoint = { name: String.fromCharCode(waypointIndex), lat: latitude, lng: longitude };
                 waypoints.push(waypoint);
