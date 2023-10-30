@@ -1,8 +1,10 @@
     <?php
 
-use Illuminate\Support\Facades\Route;
+    use App\Http\Controllers\HomeController;
+    use App\Http\Controllers\SaveDataController;
+    use Illuminate\Support\Facades\Route;
 
-/*
+    /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -13,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+    Route::middleware(['web'])->group(function () {
+        Route::get('/', function () {
+            return view('home');
+        });
 
-Route::get('/waypoints', function () {
-    return view('map');
-});
+        Route::get('/map', [HomeController::class, 'view'])->name('map');
+        Route::post('/save-data', [SaveDataController::class, 'save'])->name('save');
+    });
