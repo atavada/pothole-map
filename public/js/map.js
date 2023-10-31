@@ -82,7 +82,15 @@ function updateMapAndList() {
     waypointList.innerHTML = "";
 
     waypoints.forEach(function (waypoint, index) {
-        L.marker([waypoint.lat, waypoint.lng]).addTo(map);
+        var marker = L.marker([waypoint.lat, waypoint.lng]).addTo(map);
+
+        var imageUrl = "img/" + getWaypointImage(waypoint.lat) + ".jpg"; // Mendapatkan gambar sesuai latitude
+
+        var imageHtml = `<img src="${imageUrl}" alt="Waypoint Image" style="display: block; margin: auto; max-width: 100px;">`;
+
+        marker.bindPopup(
+            `Waypoint ${waypoint.name}:<br>Latitude: ${waypoint.lat}, Longitude: ${waypoint.lng}<br>${imageHtml}`
+        );
         var listItem = document.createElement("li");
         listItem.textContent = `Waypoint ${waypoint.name}: Lat ${waypoint.lat}, Lng ${waypoint.lng}`;
         listItem.style.cursor = "pointer"; // Set cursor to pointer for clickability
@@ -92,7 +100,29 @@ function updateMapAndList() {
         waypointList.appendChild(listItem);
     });
 }
-
+function getWaypointImage(latitude) {
+    if (latitude === -7.960592) return 1;
+    if (latitude === -7.959922) return 2;
+    if (latitude === -7.961737) return 3;
+    if (latitude === -7.962893) return 4;
+    if (latitude === -7.963926) return 5;
+    if (latitude === -7.961966) return 6;
+    if (latitude === -7.9608) return 7;
+    if (latitude === -7.961013) return 8;
+    if (latitude === -7.961121) return 9;
+    if (latitude === -7.960887) return 10;
+    if (latitude === -7.961158) return 11;
+    if (latitude === -7.961257) return 12;
+    if (latitude === -7.961562) return 13;
+    if (latitude === -7.962323) return 14;
+    if (latitude === -7.961981) return 15;
+    if (latitude === -7.960598) return 16;
+    if (latitude === -7.959498) return 17;
+    if (latitude === -7.958336) return 18;
+    if (latitude === -7.962365) return 19;
+    if (latitude === -7.963755) return 20;
+    return null; // Return null if no matching coordinate found
+}
 function updateSelectOptions() {
     var mainSelect = document.getElementById("mainWaypoint");
     var directionSelect = document.getElementById("directionWaypoint");
