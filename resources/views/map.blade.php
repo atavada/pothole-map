@@ -26,7 +26,8 @@
                     <input type="hidden" id="connectedWaypointsInput" name="connectedWaypointsInput">
                     <button type="submit" id="saveData" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Save Data</button>
                 </form>
-                <button id="resetWaypoints" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Reset</button>
+                <button onclick="location.href='{{ route('delete') }}';" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">hapus Data </button>
+                <button id="resetWaypoints" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Reset Data</button>
             </div>
             <div class="mb-10 space-y-3">
                 <h1 class="text-xl font-semibold">Input Coordinate</h1>

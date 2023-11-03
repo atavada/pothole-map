@@ -129,7 +129,6 @@ function updateSelectOptions() {
     mainSelect.innerHTML = '<option value="">Select Main Waypoint</option>';
     directionSelect.innerHTML =
         '<option value="">Select Direction Waypoint</option';
-
     waypoints.forEach(function (waypoint) {
         var option = document.createElement("option");
         option.value = waypoint.name;
@@ -145,7 +144,12 @@ function updateLines() {
         map.removeLayer(line);
     });
     lines = [];
-
+    // Remove arrow markers
+    map.eachLayer(function (layer) {
+        if (layer instanceof L.PolylineDecorator) {
+            map.removeLayer(layer);
+        }
+    });
     // Redraw lines connecting waypoints
     for (var mainPoint in connectedWaypoints) {
         if (connectedWaypoints.hasOwnProperty(mainPoint)) {

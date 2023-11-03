@@ -23,4 +23,7 @@
 
         Route::get('/map', [HomeController::class, 'view'])->name('map');
         Route::post('/save-data', [SaveDataController::class, 'save'])->name('save');
+        Route::get('/delete', [SaveDataController::class, 'delete'])->name('delete');
+        Route::get('/pagerank', [HomeController::class, 'matrix'])->name('matrix');
+        Route::get('/graph', [SaveDataController::class, 'store'])->name('store');
     });
