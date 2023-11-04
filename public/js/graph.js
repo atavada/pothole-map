@@ -1,8 +1,8 @@
 const graph = dataGraph;
 
 // Set up the SVG container
-var width = 800;
-var height = 600;
+var width = 1200;
+var height = 1000;
 var svg = d3
     .select("#graph-container")
     .append("svg")
@@ -30,7 +30,7 @@ var simulation = d3
         d3
             .forceLink(links)
             .id((d) => d.id)
-            .distance(200)
+            .distance(600)
     )
     .force("charge", d3.forceManyBody())
     .force("center", d3.forceCenter(width / 2, height / 2));
@@ -40,7 +40,7 @@ svg.append("defs")
     .append("marker")
     .attr("id", "arrowhead")
     .attr("viewBox", "0 -5 10 10")
-    .attr("refX", 10)
+    .attr("refX", 100)
     .attr("refY", 0)
     .attr("markerWidth", 6)
     .attr("markerHeight", 6)
