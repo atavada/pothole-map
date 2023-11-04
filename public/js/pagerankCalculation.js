@@ -3,7 +3,7 @@ const dampingFactor = 0.85;
 const hyperlinkMatrix = createHyperlinkMatrix(graph);
 const stochasticMatrix = createStochasticMatrix(graph);
 const googleMatrix = createGoogleMatrix(stochasticMatrix, dampingFactor);
-const convergenceThreshold = 0.0000001; // Tolerance for convergence
+const convergenceThreshold = 0.000001; // Tolerance for convergence
 const pageRank = pagerank(googleMatrix, convergenceThreshold);
 const nodes = Object.keys(graph);
 const sortedNodesAndPageRank = getSortedNodesAndPageRank(pageRank, nodes);
@@ -143,13 +143,7 @@ function getSortedNodesAndPageRank(pagerankIterations, nodeNames) {
     return nodePageRankPairs;
 }
 
-function createMatrixTable(
-    matrix,
-    nodeNames,
-    containerId,
-    tableId,
-    tableClass
-) {
+function createMatrixTable(matrix, nodeNames, containerId, tableId) {
     const container = document.getElementById(containerId);
     const table = document.getElementById(tableId);
 
@@ -166,19 +160,15 @@ function createMatrixTable(
                         : nodeNames[j - 1]
                     : j === 0
                     ? nodeNames[i - 1]
-                    : matrix !== googleMatrix
+                    : matrix !== googleMatrix && matrix !== stochasticMatrix
                     ? matrix[i - 1][j - 1]
                     : matrix[i - 1][j - 1].toFixed(3);
             // Apply Tailwind CSS classes to the cells
-            cell.classList.add("border", "p-2"); // You can adjust the classes as needed
+            cell.classList.add(i === 0 ? "bg-white" : "p-4", "border-4"); // You can adjust the classes as needed
+            row.classList.add("bg-white", "border-4");
             row.appendChild(cell);
         }
         table.appendChild(row);
-    }
-
-    // Add table class if provided
-    if (tableClass) {
-        table.classList.add(tableClass);
     }
 
     container.appendChild(table);
@@ -203,13 +193,14 @@ function createPagerankTable(
             cell.textContent =
                 i === 0
                     ? j === 0
-                        ? "Iteration"
+                        ? "ITERATION"
                         : nodeNames[j - 1]
                     : j === 0
                     ? `Iteration ${i - 1}`
-                    : pagerank[i - 1][j - 1].toFixed(6);
+                    : pagerank[i - 1][j - 1].toFixed(7);
             // Apply Tailwind CSS classes to the cells
-            cell.classList.add("border", "p-2"); // You can adjust the classes as needed
+            cell.classList.add(i === 0 ? "bg-white" : "p-4", "border-4"); // You can adjust the classes as needed
+            row.classList.add("bg-white", "border-4");
             row.appendChild(cell);
         }
         table.appendChild(row);
@@ -236,7 +227,7 @@ function displayListSortedNodesAndPageRank(
         li.textContent = `Rank ke-${ordinal} adalah titik ${
             item.node
         } dengan nilai Pagerank: ${item.pagerank.toFixed(6)}`;
-        li.classList.add("mb-2", "text-lg", "font-semibold"); // Add Tailwind CSS classes
+        li.classList.add("text-lg", "font-semibold"); // Add Tailwind CSS classes
         ul.appendChild(li);
     });
 
@@ -252,29 +243,25 @@ createMatrixTable(
     hyperlinkMatrix,
     nodes,
     "hyperlink-matrix-container",
-    "hyperlink-matrix",
-    "table-fixed"
+    "hyperlink-matrix"
 );
 createMatrixTable(
     stochasticMatrix,
     nodes,
     "stochastic-matrix-container",
-    "stochastic-matrix",
-    "table-fixed"
+    "stochastic-matrix"
 );
 createMatrixTable(
     googleMatrix,
     nodes,
     "google-matrix-container",
-    "google-matrix",
-    "table-fixed"
+    "google-matrix"
 );
 createPagerankTable(
     pageRank,
     nodes,
     "pagerank-container",
-    "pagerank-iteration",
-    "table-fixed"
+    "pagerank-iteration"
 );
 
 // Print the transition matrix

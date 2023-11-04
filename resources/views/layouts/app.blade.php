@@ -17,12 +17,19 @@
         </a>
         <div class="hidden items-center gap-4 md:inline-flex">
             <a href="/" class="rounded-lg px-3 py-2 text-sm font-semibold hover:bg-zinc-100">Beranda</a>
-            <a href="/" class="rounded-lg px-3 py-2 text-sm font-semibold hover:bg-zinc-100">Map</a>
-            <a href="/" class="rounded-lg px-3 py-2 text-sm font-semibold hover:bg-zinc-100">Contact</a>
-            <a href="/" class="rounded-lg px-3 py-2 text-sm font-semibold text-white bg-black hover:bg-black/80">Try Now</a>
+            <a href="/map" class="rounded-lg px-3 py-2 text-sm font-semibold hover:bg-zinc-100">Map</a>
+            <a href="/graph" class="rounded-lg px-3 py-2 text-sm font-semibold hover:bg-zinc-100">Graph</a>
+            <a href="/pagerank" class="rounded-lg px-3 py-2 text-sm font-semibold hover:bg-zinc-100">Page Rank</a>
+            <a href="/map" class="rounded-lg px-3 py-2 text-sm font-semibold text-white bg-black hover:bg-black/80">Try Now</a>
         </div>
-        <div class='flex md:hidden'>
-            logo BurgerMenu
+        <div class='flex md:hidden justify-center items-center'>
+            <Image
+            src="/img/burger.png"
+            alt="menu"
+            width=100
+            height=100
+            class=" w-8 h-8"
+            />
         </div>
     </div>
 

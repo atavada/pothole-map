@@ -13,21 +13,22 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-    @if (session('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif
     <div class="grid grid-cols-2 gap-2">
         <div class="p-12">
-            <div class="mb-10 space-y-3">
+            <div class="flex mb-2 space-x-2">
                 <form action="{{ route('save') }}" method="POST">
                     @csrf
                     <input type="hidden" id="connectedWaypointsInput" name="connectedWaypointsInput">
                     <button type="submit" id="saveData" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Save Data</button>
                 </form>
-                <button onclick="location.href='{{ route('delete') }}';" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">hapus Data </button>
+                <button onclick="location.href='{{ route('delete') }}';" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Delete Data</button>
                 <button id="resetWaypoints" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Reset Data</button>
+            </div>
+            <div class="mb-10">
+                @if($data)
+                    <button onclick="location.href='{{ route('matrix') }}';" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Page Rank Matrix</button>
+                    <button onclick="location.href='{{ route('store') }}';" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Graph</button>
+                @endif
             </div>
             <div class="mb-10 space-y-3">
                 <h1 class="text-xl font-semibold">Input Coordinate</h1>
@@ -50,7 +51,7 @@
                 <button id="connectWaypoints" class="inline-flex items-center justify-center hover:bg-black/70 bg-black rounded-md h-10 px-4 py-2 text-white text-sm font-medium">Connect Waypoints</button>
             </div>
         </div>
-        <div id="map" class="h-full"></div>
+        <div id="map" class="max-h-full min-h-screen"></div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

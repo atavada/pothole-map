@@ -1,4 +1,4 @@
-var map = L.map("map").setView([-7.983908, 112.621391], 14); // Set view to Malang
+var map = L.map("map").setView([-7.962449, 112.601322], 16); // Set view to Malang
 var waypoints = [];
 var waypointIndex = 65; // ASCII code for 'A';
 var lines = [];
@@ -181,14 +181,14 @@ function createarrow(polyline) {
     L.polylineDecorator(polyline, {
         patterns: [
             {
-                offset: 25,
+                offset: 50,
                 repeat: 0,
                 symbol: L.Symbol.arrowHead({
-                    pixelSize: 10,
+                    pixelSize: 15,
                     pathOptions: {
                         fillOpacity: 1,
                         weight: 1,
-                        color: "red", // Arrow color
+                        color: "blue", // Arrow color
                     },
                 }),
             },
